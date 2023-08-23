@@ -1,1 +1,48 @@
-<p>login-form works!</p>
+<div class="container bg-[#ffffff90] h-max flex flex-col w-96 p-4 gap-2">
+  <myc-button
+    [routerLink]="'/homepage'"
+    *ngIf="pageState && pageState.state !== 'forgotPassword'"
+  >
+    <myc-icon></myc-icon> login with google</myc-button
+  >
+  <div class="flex flex-row justify-center gap-20">
+    <myc-button
+      *ngIf="pageState && pageState.state !== 'forgotPassword'"
+      [buttonType]="'button'"
+      class="flex-1"
+      (click)="onButtonClick('login')"
+      >login</myc-button
+    >
+    <myc-button
+      *ngIf="pageState && pageState.state !== 'forgotPassword'"
+      [buttonType]="'button'"
+      class="flex-1"
+      (click)="onButtonClick('register')"
+      >register</myc-button
+    >
+  </div>
+  <form
+    action=""
+    class="flex flex-col gap-2"
+    [formGroup]="loginForm"
+    (ngSubmit)="formSubmitFunctions[returnPageState()]()"
+  >
+    <myc-input
+      *ngFor="let formInput of formInputList"
+      [control]="loginForm.controls[formInput.id]"
+      [type]="formInput.type"
+      [id]="formInput.id"
+      >{{ formInput.text }}</myc-input
+    >
+
+    <myc-button
+      *ngIf="
+        pageState && !['register', 'forgotPassword'].includes(pageState.state)
+      "
+      [buttonType]="'button'"
+      (click)="onButtonClick('forgotPassword')"
+      >forgot password</myc-button
+    >
+    <myc-button [buttonType]="'submit'">{{ submitButton }}</myc-button>
+  </form>
+</div>

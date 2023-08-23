@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-icon',
+  selector: 'myc-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.css']
+  styleUrls: ['./icon.component.css'],
 })
-export class IconComponent {
-
-}
+export class IconComponent {}
